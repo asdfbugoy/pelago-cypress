@@ -1,16 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import debounce from 'lodash.debounce';
 
 const Search = props => {
-    const onChange = e => {
-        console.log(e.target.value);
-        // props.fetchAPI();
-    };
+    const onChange = debounce(() => props.fetchAPI(ref.current.value), 2000);
 
-    const onClick = () => {
-        console.log(ref.current.value);
-        props.fetchAPI(ref.current.value);
-    };
+    const onClick = () => props.fetchAPI(ref.current.value);
 
     const ref = React.useRef();
 
@@ -18,7 +13,7 @@ const Search = props => {
         <div className="input-group mb-3">
             <input ref={ref} data-cy="input" onChange={onChange} className="form-control" data-fetch="false" />
             <div className="input-group-append">
-                <button data-cy="btn" className="btn btn-primary" onClick={onClick}><i className="fa fa-search"></i></button>
+                <button data-cy="btn" disabled={props.loading} className="btn btn-primary" onClick={onClick}><i className={props.loading ? 'fa fa-gear fa-spin fa-spiner' : 'fa fa-search'}></i></button>
             </div>
         </div>
     </div>;
@@ -26,7 +21,8 @@ const Search = props => {
 
 Search.propTypes = {
     fetchAPI: PropTypes.func,
-    data: PropTypes.object
+    data: PropTypes.object,
+    loading: PropTypes.bool
 };
 
 export default Search;

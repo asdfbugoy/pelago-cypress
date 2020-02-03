@@ -14,15 +14,39 @@ context('Movie', () => {
         it('Accepts User input', () => {
             cy.get('[data-cy=movie] [data-cy=search] [data-cy=input]').type('francis', { delay: 500 });
 
-            cy.get('[data-cy=movie] [data-cy=search] [data-cy=input]').clear({ delay: 500 }).type('declaro');
+            cy.get('[data-cy=movie] [data-cy=search] [data-cy=input]').clear({ delay: 500 }).type('test');
         });
 
         it('Clicks the Search button', () => {
-            cy.get('[data-cy=movie] [data-cy=search] [data-cy=btn]').click({ force: true }).then(data => console.log(data[0].dataset));
+            cy.get('[data-cy=movie] [data-cy=search] [data-cy=btn]').click({ force: true });
         });
 
-        it('Check the list of movie', () => {
+        it('Displays the list of movie with valid input with Click Button', () => {
             cy.get('[data-cy=movie] [data-cy=list]').then(d => console.log(d));
         });
+
+        it('Displays Error Message with invalid input with Click Button', () => {
+            cy.get('[data-cy=movie] [data-cy=search] [data-cy=input]').clear({ delay: 500 });
+            cy.get('[data-cy=movie] [data-cy=search] [data-cy=btn]').click({ force: true });
+            cy.get('[data-cy=movie] [data-cy=error]');
+
+            cy.get('[data-cy=movie] [data-cy=search] [data-cy=input]').clear({ delay: 500 }).type('a');
+            cy.get('[data-cy=movie] [data-cy=search] [data-cy=btn]').click({ force: true });
+            cy.get('[data-cy=movie] [data-cy=error]');
+
+            cy.get('[data-cy=movie] [data-cy=search] [data-cy=input]').clear({ delay: 500 }).type('aasdfsdfasdfas');
+            cy.get('[data-cy=movie] [data-cy=search] [data-cy=btn]').click({ force: true });
+            cy.get('[data-cy=movie] [data-cy=error]');
+        });
+        
+        it('Displays the list of movie with valid input with Typing the debounce 2 seconds', () => {
+
+            cy.get('[data-cy=movie] [data-cy=search] [data-cy=input]').clear({ delay: 500 }).type('test');
+            cy.get('[data-cy=movie] [data-cy=list]');
+
+            cy.get('[data-cy=movie] [data-cy=search] [data-cy=input]').clear({ delay: 500 }).type('default');
+            cy.get('[data-cy=movie] [data-cy=list]');
+        });
+
     });
 });
