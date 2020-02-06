@@ -48,5 +48,10 @@ context('Movie', () => {
             cy.get('[data-cy=movie] [data-cy=list]');
         });
 
+        it('Click and Displays Advanced Search', () => {
+            cy.get('[data-cy=movie] [data-cy=search] [data-cy=advanced]').click({ force: true });
+            cy.get('[data-cy=movie] [data-cy=advanced-search]');
+        });
+
     });
 });
