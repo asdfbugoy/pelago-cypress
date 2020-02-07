@@ -30,8 +30,8 @@ const List = props => {
                             <div className="card-body">
                                 <div className="card-title primary">{d.Title}</div>
                                 <div className="card-text secondary">{d.imdbID}</div>
-                                <div className="card-text">{d.Year}</div>
-                                <div className="card-text">{d.Type}</div>
+                                <div data-cy="year" className="card-text">{d.Year}</div>
+                                <div data-cy="type" className="card-text">{d.Type}</div>
                             </div>
                         </div>
                     </div>

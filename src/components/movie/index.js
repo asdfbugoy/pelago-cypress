@@ -3,6 +3,7 @@ import Header from './Header';
 import Search from './Search';
 import List from './List';
 import Advanced from './Advanced';
+import Pagination from './Pagination';
 
 const Movie = () => {
 
@@ -20,20 +21,31 @@ const Movie = () => {
 
     const [advanced, setAdvanced] = React.useState(false);
 
+    const [params, setParams] = React.useState({
+        y: '',
+        type: '',
+        page: ''
+    });
+
+    const [page, setPage] = React.useState(1);
+    const [term, setTerm] = React.useState('');
+
     React.useEffect(() => {
         // fetchAPI('default');
     }, [advanced]);
 
-    const fetchAPI = (s) => {
+    const fetchAPI = () => {
         setLoading(true);
         const apikey = '185c5ebb';
         const url = 'https://www.omdbapi.com/?';
-        const params = {
+        const p = {
             apikey: apikey,
-            s: s
+            s: term,
+            page: page,
+            ...(advanced && { ...params }),
         };
-        const query = Object.keys(params)
-            .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k]))
+        const query = Object.keys(p)
+            .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(p[k]))
             .join('&');
 
         fetch(url + query, {
@@ -45,7 +57,6 @@ const Movie = () => {
         })
             .then((response) => response.json())
             .then((data) => {
-                console.log('Success:', data);
                 // setList(data.Search);
                 // setTotal(data.totalResults);
                 // setStatus(data.Response);
@@ -62,27 +73,21 @@ const Movie = () => {
                 // setTimeout(() => setLoading(false), 2000);
             })
             .catch((error) => {
-                console.log('Error:', error);
                 setData({
                     Response: false,
                     totalResults: 0,
                     Search: [],
-                    Errorßß: error.message
+                    Error: error.message
                 });
             });
     };
 
-    const [params, setParams] = React.useState({
-        y: 2018,
-        type: Movie,
-        page: 1
-    });
-
     return <section data-cy="movie">
         <Header />
-        <Search loading={loading} fetchAPI={fetchAPI} setAdvanced={setAdvanced} advanced={advanced} />
+        <Search loading={loading} fetchAPI={fetchAPI} setAdvanced={setAdvanced} advanced={advanced} setPage={setPage} />
         {advanced && <Advanced params={params} setParams={setParams} />}
         <List {...data} />
+        {data.totalResults && <Pagination total={data.totalResults} setPage={setPage} fetchAPI={fetchAPI} />}
     </section>;
 };
 

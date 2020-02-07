@@ -49,8 +49,18 @@ context('Movie', () => {
         });
 
         it('Click and Displays Advanced Search', () => {
-            cy.get('[data-cy=movie] [data-cy=search] [data-cy=advanced]').click({ force: true });
+            cy.get('[data-cy=movie] [data-cy=search] [data-cy=advanced]').click({ force: true, delay: 2000 });
             cy.get('[data-cy=movie] [data-cy=advanced-search]');
+        });
+
+        it('Display List based on Advanced Search', () => {
+            cy.get('[data-cy=movie] [data-cy=advanced-search] [data-cy=type]').select('movie');
+            cy.get('[data-cy=movie] [data-cy=advanced-search] [data-cy=year]').type('{del}{selectall}{backspace}').type(2015);
+            cy.get('[data-cy=movie] [data-cy=advanced-search] [data-cy=page]').type('{del}{selectall}{backspace}').type(2);
+            cy.get('[data-cy=movie] [data-cy=search] [data-cy=input]').clear().type('test');
+            cy.get('[data-cy=movie] [data-cy=search] [data-cy=btn]').click({ force: true });
+            cy.get('[data-cy=movie]').find('[data-cy=list]').find('[data-cy=year]').should(data => expect(data.text, '2015'));
+            cy.get('[data-cy=movie]').find('[data-cy=list]').find('[data-cy=type]').should(data => expect(data.text, 'movie'));
         });
 
     });
