@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "beeef5d7980c638c584bd63f61ae45e1",
+    "revision": "db52871cad96dca57fc5c148e51099c3",
     "url": "/pelago-cypress/index.html"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/pelago-cypress/static/js/2.7c8cade1.chunk.js.LICENSE"
   },
   {
-    "revision": "35eaf5e87da81c19e4e7",
-    "url": "/pelago-cypress/static/js/main.d9cb995e.chunk.js"
+    "revision": "cfcb4ebc921fe5ad299d",
+    "url": "/pelago-cypress/static/js/main.4a61f547.chunk.js"
   },
   {
     "revision": "59505009f7a458db9bc3",
