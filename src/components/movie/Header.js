@@ -8,8 +8,8 @@ const StyledHeader = styled.header`
 const Header = () => {
     return <StyledHeader data-cy="header" className="mb-3 card border shadow">
         <div className="card-body">
-            <div className="primary">Hey</div>
-            <div className="secondary">Cinema</div>
+            <div className="primary">Singtel-GO</div>
+            <div className="secondary">Quote Sample List</div>
         </div>
     </StyledHeader>;
 };

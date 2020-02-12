@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { observer } from 'mobx-react';
 
 const StyledImg = styled.div`
     width: 100%;
@@ -23,8 +24,7 @@ const List = props => {
                 <div className="card border shadow">
                     <div className="row no-gutters">
                         <div className="col-sm-auto">
-                            {/* <img className="card-img" src="https://via.placeholder.com/150" alt="" /> */}
-                            <StyledImg url={d.Poster} className="card-img" />
+                            {/* <StyledImg url={d.Poster} className="card-img" /> */}
                         </div>
                         <div className="col-sm">
                             <div className="card-body">
@@ -42,9 +42,7 @@ const List = props => {
 
 List.propTypes = {
     Search: PropTypes.array,
-    totalResults: PropTypes.number,
-    Response: PropTypes.bool,
     Error: PropTypes.string
 };
 
-export default List;
+export default observer(List);

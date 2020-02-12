@@ -1,5 +1,4 @@
 {
-  "homepage": "http://asdfbugoy.github.io/pelago-cypress",
   "name": "pelago-cypress",
   "version": "0.1.0",
   "private": true,
@@ -8,6 +7,9 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "lodash.debounce": "^4.0.8",
+    "mobx": "^5.15.4",
+    "mobx-react": "^6.1.7",
+    "mobx-state-tree": "^3.15.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-scripts": "3.3.0"
@@ -38,12 +40,13 @@
     ]
   },
   "devDependencies": {
-    "cypress": "^3.8.3",
+    "cypress": "^4.0.1",
     "eslint": "^6.8.0",
     "eslint-plugin-cypress": "^2.8.1",
     "eslint-plugin-react": "^7.18.0",
     "eslint-plugin-react-hooks": "^2.3.0",
     "gh-pages": "^2.2.0",
+    "mobx-devtools-mst": "^0.9.21",
     "styled-components": "^5.0.0",
     "stylelint": "^13.0.0",
     "stylelint-config-recommended": "^3.0.0",

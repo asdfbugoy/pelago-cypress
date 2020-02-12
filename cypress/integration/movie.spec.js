@@ -63,5 +63,8 @@ context('Movie', () => {
             cy.get('[data-cy=movie]').find('[data-cy=list]').find('[data-cy=type]').should(data => expect(data.text, 'movie'));
         });
 
+        it('Display Pagination', () => {
+            cy.get('[data-cy=movie] [data-cy=pagination]');
+        });
     });
 });

@@ -1,42 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import debounce from 'lodash.debounce';
+import { observer } from 'mobx-react';
 
 const Search = props => {
-    const { fetchAPI, loading, setAdvanced, advanced, setPage } = props;
-
+    const { store } = props;
     const onChange = debounce(() => {
-        // setPage(1);
-        fetchAPI(ref.current.value);
+        store.params.setParamsByField(ref.current.name, ref.current.value);
+        !store.advanced && store.params.setParamsByField('page', '1');
+        store.fetchAPI();
     }, 2000);
 
     const onClick = () => {
-        // setPage(1);
-        fetchAPI(ref.current.value);
+        !store.advanced && store.params.setParamsByField('page', '1');
+        store.fetchAPI();
     };
-
     const ref = React.useRef();
-
-    // const onClickAdvanced = () => setAdvanced(!advanced);
 
     return <div data-cy="search">
         <div className="input-group mb-3">
-            <input disabled={loading} ref={ref} data-cy="input" onChange={onChange} className="form-control" data-fetch="false" />
+            <input name="s" disabled={store.loading} ref={ref} data-cy="input" onChange={onChange} className="form-control" />
             <div className="input-group-append">
-                <button data-cy="btn" disabled={loading} className="btn btn-outline-secondary" onClick={onClick}><i className={loading ? 'fa fa-gear fa-spin fa-spiner' : 'fa fa-search'}></i></button>
-                <button data-cy="advanced" disabled={loading} className="btn btn-outline-primary" onClick={() => setAdvanced(!advanced)}><i className="fa fa-search-plus"></i></button>
+                <button data-cy="btn" disabled={store.loading} className="btn btn-outline-secondary" onClick={onClick}><i className={store.loading ? 'fa fa-gear fa-spin fa-spiner' : 'fa fa-search'}></i></button>
+                <button data-cy="advanced" disabled={store.loading} className="btn btn-outline-primary" onClick={() => store.setAdvanced()}><i className="fa fa-search-plus"></i></button>
             </div>
         </div>
     </div>;
 };
 
 Search.propTypes = {
-    fetchAPI: PropTypes.func,
-    data: PropTypes.object,
-    loading: PropTypes.bool,
-    setAdvanced: PropTypes.func,
-    advanced: PropTypes.bool,
-    setPage: PropTypes.func
+    store: PropTypes.object
 };
 
-export default Search;
+export default observer(Search);
