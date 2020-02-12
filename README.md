@@ -10,6 +10,8 @@ Built using:
     React Hooks
     Mobx / Mobx State Tree
 
+    test url: https://asdfbugoy.github.io/pelago-cypress/
+
 ### `yarn start`
 
 Runs the app in the development mode.<br />
