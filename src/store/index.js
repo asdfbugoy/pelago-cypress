@@ -1,48 +1,8 @@
 import React from 'react';
-import { types, flow, applySnapshot, getSnapshot, getParent } from 'mobx-state-tree';
-
-const Pagination = types.model({
-    // current: types.optional(types.number, 1),
-    total: types.optional(types.number, 1),
-}).actions(self => ({
-    prev() {
-        console.log(getParent(self));
-        self.setCurrent(self.current - 1);
-    },
-    next() {
-        self.setCurrent(self.current + 1);
-    },
-    setCurrent(v) {
-        self.current = v < 1 ? 1 : v > self.total ? self.total : v;
-    }
-}));
-
-const Params = types.model({
-    apikey: '185c5ebb',
-    s: types.optional(types.string, ''),
-    page: types.optional(types.string, ''),
-    y: types.optional(types.string, ''),
-    type: types.optional(types.string, '')
-}).actions(self => ({
-    setParamsByField(n, v) {
-        self[n] = v;
-    }
-}));
-
-const Search = types.model({
-    Title: types.optional(types.string, ''),
-    Year: '',
-    imdbID: '',
-    Type: '',
-    Poster: ''
-});
-
-const Data = types.model({
-    Response: types.optional(types.boolean, false),
-    totalResults: types.optional(types.number, 0),
-    Search: types.array(Search, []),
-    Error: types.optional(types.string, '')
-});
+import { types, flow, applySnapshot, getSnapshot } from 'mobx-state-tree';
+import Pagination from './movie/Pagination';
+import Params from './movie/Params';
+import Data from './movie/Data';
 
 const Store = types.model({
     url: 'https://www.omdbapi.com/?',
@@ -66,6 +26,9 @@ const Store = types.model({
     },
     setAdvanced() {
         self.advanced = !self.advanced;
+        self.params = self.advanced ? self.params : Params.create({
+            s: self.params.s
+        });
     },
     setLoading(v) {
         self.loading = v;
@@ -82,7 +45,6 @@ const Store = types.model({
             });
 
             const d = yield response.json();
-            console.log('success');
             applySnapshot(self.data, {
                 ...d,
                 totalResults: d.totalResults ? parseInt(d.totalResults, 10) : 0,
@@ -93,7 +55,6 @@ const Store = types.model({
 
             return response;
         } catch (error) {
-            console.log(error.message);
             applySnapshot(self.data, {
                 totalResults: 0,
                 Response: false,
@@ -103,10 +64,10 @@ const Store = types.model({
         }
     })
 }));
-
+/**
+ * thinking of moving below code to custom hooks
+ */
 export const store = Store.create();
-
-// onSnapshot(store, snapshot => console.log('Snapshot: ', snapshot));
 
 const StoreContext = React.createContext();
 

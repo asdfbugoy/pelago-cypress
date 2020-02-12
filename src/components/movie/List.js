@@ -24,7 +24,7 @@ const List = props => {
                 <div className="card border shadow">
                     <div className="row no-gutters">
                         <div className="col-sm-auto">
-                            {/* <StyledImg url={d.Poster} className="card-img" /> */}
+                            <StyledImg url={d.Poster} className="card-img" />
                         </div>
                         <div className="col-sm">
                             <div className="card-body">
