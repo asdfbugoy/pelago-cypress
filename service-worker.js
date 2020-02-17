@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/pelago-cypress/precache-manifest.bd11eebcaf4d0d18a24491bba226e583.js"
+  "/pelago-cypress/precache-manifest.ee6f2d2ccaaad6f1519b17f6c3fbb3d1.js"
 );
 
 self.addEventListener('message', (event) => {

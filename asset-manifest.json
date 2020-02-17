@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/pelago-cypress/static/js/main.eaa5f9ef.chunk.js",
-    "main.js.map": "/pelago-cypress/static/js/main.eaa5f9ef.chunk.js.map",
+    "main.js": "/pelago-cypress/static/js/main.6000f77d.chunk.js",
+    "main.js.map": "/pelago-cypress/static/js/main.6000f77d.chunk.js.map",
     "runtime-main.js": "/pelago-cypress/static/js/runtime-main.1548ce77.js",
     "runtime-main.js.map": "/pelago-cypress/static/js/runtime-main.1548ce77.js.map",
     "static/js/2.fbdb6b69.chunk.js": "/pelago-cypress/static/js/2.fbdb6b69.chunk.js",
     "static/js/2.fbdb6b69.chunk.js.map": "/pelago-cypress/static/js/2.fbdb6b69.chunk.js.map",
     "index.html": "/pelago-cypress/index.html",
-    "precache-manifest.bd11eebcaf4d0d18a24491bba226e583.js": "/pelago-cypress/precache-manifest.bd11eebcaf4d0d18a24491bba226e583.js",
+    "precache-manifest.ee6f2d2ccaaad6f1519b17f6c3fbb3d1.js": "/pelago-cypress/precache-manifest.ee6f2d2ccaaad6f1519b17f6c3fbb3d1.js",
     "service-worker.js": "/pelago-cypress/service-worker.js",
     "static/js/2.fbdb6b69.chunk.js.LICENSE": "/pelago-cypress/static/js/2.fbdb6b69.chunk.js.LICENSE"
   },
   "entrypoints": [
     "static/js/runtime-main.1548ce77.js",
     "static/js/2.fbdb6b69.chunk.js",
-    "static/js/main.eaa5f9ef.chunk.js"
+    "static/js/main.6000f77d.chunk.js"
   ]
 }
