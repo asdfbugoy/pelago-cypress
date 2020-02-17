@@ -5,18 +5,14 @@ import { observer } from 'mobx-react';
 
 const Search = props => {
     const { store } = props;
-    const onChange = debounce(() => {
+    const ref = React.useRef();
+    const processAPI = () => {
         store.params.setParamsByField(ref.current.name, ref.current.value);
         !store.advanced && store.params.setParamsByField('page', '1');
         store.fetchAPI();
-    }, 2000);
-
-    const onClick = () => {
-        !store.advanced && store.params.setParamsByField('page', '1');
-        store.fetchAPI();
     };
-    const ref = React.useRef();
-
+    const onChange = debounce(processAPI, 2000);
+    const onClick = () => processAPI();
     return <div data-cy="search">
         <div className="input-group mb-3">
             <input name="s" disabled={store.loading} ref={ref} data-cy="input" onChange={onChange} className="form-control" />

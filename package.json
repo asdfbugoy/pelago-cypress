@@ -1,5 +1,4 @@
 {
-  "homepage": "http://asdfbugoy.github.io/pelago-cypress",
   "name": "pelago-cypress",
   "version": "0.1.0",
   "private": true,
@@ -13,6 +12,7 @@
     "mobx-state-tree": "^3.15.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-router-dom": "^5.1.2",
     "react-scripts": "3.3.0"
   },
   "scripts": {
@@ -41,7 +41,7 @@
     ]
   },
   "devDependencies": {
-    "cypress": "^4.0.1",
+    "cypress": "^4.0.2",
     "eslint": "^6.8.0",
     "eslint-plugin-cypress": "^2.8.1",
     "eslint-plugin-react": "^7.18.0",

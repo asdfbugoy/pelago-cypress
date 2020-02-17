@@ -5,8 +5,10 @@ context('Movie', () => {
 
     });
     describe('Component', () => {
+        
         it('Renders Movie Component', () => {
-            cy.get('[data-cy=movie]').find('[data-cy=header]');
+            cy.visit('/');
+            cy.get('[data-cy=header]');
             cy.get('[data-cy=movie]').find('[data-cy=search]');
             cy.get('[data-cy=movie]').find('[data-cy=list]');
         });
@@ -22,30 +24,28 @@ context('Movie', () => {
         });
 
         it('Displays the list of movie with valid input with Click Button', () => {
-            cy.get('[data-cy=movie] [data-cy=list]').then(d => console.log(d));
+            cy.get('[data-cy=movie] [data-cy=list]');
         });
 
         it('Displays Error Message with invalid input with Click Button', () => {
             cy.get('[data-cy=movie] [data-cy=search] [data-cy=input]').clear({ delay: 500 });
-            cy.get('[data-cy=movie] [data-cy=search] [data-cy=btn]').click({ force: true });
+            // cy.get('[data-cy=movie] [data-cy=search] [data-cy=btn]').click({ force: true });
             cy.get('[data-cy=movie] [data-cy=error]');
 
             cy.get('[data-cy=movie] [data-cy=search] [data-cy=input]').clear({ delay: 500 }).type('a');
-            cy.get('[data-cy=movie] [data-cy=search] [data-cy=btn]').click({ force: true });
+            // cy.get('[data-cy=movie] [data-cy=search] [data-cy=btn]').click({ force: true });
             cy.get('[data-cy=movie] [data-cy=error]');
 
             cy.get('[data-cy=movie] [data-cy=search] [data-cy=input]').clear({ delay: 500 }).type('aasdfsdfasdfas');
-            cy.get('[data-cy=movie] [data-cy=search] [data-cy=btn]').click({ force: true });
+            // cy.get('[data-cy=movie] [data-cy=search] [data-cy=btn]').click({ force: true });
             cy.get('[data-cy=movie] [data-cy=error]');
         });
-        
+
         it('Displays the list of movie with valid input with Typing the debounce 2 seconds', () => {
-
-            cy.get('[data-cy=movie] [data-cy=search] [data-cy=input]').clear({ delay: 500 }).type('test');
-            cy.get('[data-cy=movie] [data-cy=list]');
-
-            cy.get('[data-cy=movie] [data-cy=search] [data-cy=input]').clear({ delay: 500 }).type('default');
-            cy.get('[data-cy=movie] [data-cy=list]');
+            cy.get('[data-cy=movie] [data-cy=search] [data-cy=input]').clear({ delay: 500 }).type('test')
+                .then(() => cy.get('[data-cy=movie] [data-cy=list]'));
+            cy.get('[data-cy=movie] [data-cy=search] [data-cy=input]').clear({ delay: 500 }).type('default')
+                .then(() => cy.get('[data-cy=movie] [data-cy=list]'));
         });
 
         it('Click and Displays Advanced Search', () => {
@@ -66,5 +66,22 @@ context('Movie', () => {
         it('Display Pagination', () => {
             cy.get('[data-cy=movie] [data-cy=pagination]');
         });
+
+        it('Click and Check Pagination buttons works', () => {
+            cy.get('[data-cy=movie] [data-cy=pagination]').find('button').then(data => {
+                Array.from(data).map(d => {
+                    cy.get(d).click({ delay: 3000 });
+                    cy.get('[data-cy=movie]').find('[data-cy=list]');
+                });
+            });
+        });
+
+        it('Displays Detailed Page after click', () => {
+            cy.get('[data-cy=movie] [data-cy=list] [data-cy=click-to-detailed]').then(d => {
+                cy.get(d[0]).click();
+                cy.get('[data-cy=detailed]');
+            });
+        });
+
     });
 });

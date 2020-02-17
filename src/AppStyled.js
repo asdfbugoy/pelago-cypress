@@ -19,6 +19,9 @@ const AppStyled = createGlobalStyle`
     .tertiary {
         color: #34283f;
     }
+    .pointer {
+        cursor: pointer;
+    }
 `;
 
 export default AppStyled;

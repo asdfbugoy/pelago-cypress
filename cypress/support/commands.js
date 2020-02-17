@@ -24,7 +24,7 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
-Cypress.config('waitAfterEachCommand', 500);
+// Cypress.config('waitAfterEachCommand', 500);
 
 // const COMMAND_DELAY = 500;
 
