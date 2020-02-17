@@ -5,7 +5,8 @@ import AppStyled from 'AppStyled';
 import PropTypes from 'prop-types';
 import { useMst } from 'store';
 import {
-    BrowserRouter as Router,
+    HashRouter as Router,
+    
     Switch,
     Route,
     // Link,
