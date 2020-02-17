@@ -12,7 +12,7 @@ const Movie = props => {
     return <section data-cy="movie">
         <Search store={store} />
         {store.advanced && <Advanced store={store} />}
-        {store.loading? <div className="mb-3">...loading <i className="fa fa-gear fa-spin fa-spinner"></i></div> : <List store={store} />}
+        <List store={store} />
         {store.data.totalResults > 0 && <Pagination store={store} />}
     </section>;
 };

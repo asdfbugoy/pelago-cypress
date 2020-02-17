@@ -6,7 +6,7 @@ context('Detailed Movie', () => {
     });
     describe('Component', () => {
         it('Displays Detailed Page', () => {
-            cy.visit('/tt4244162');
+            cy.visit('#/tt4244162');
             cy.get('[data-cy=detailed]');
         });
     });
